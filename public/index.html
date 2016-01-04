@@ -1,0 +1,115 @@
+
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="T2D">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Things2Do</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html 					{ overflow-y:scroll; }
+        body 					{ padding-top:0px; }
+        #todo-list 				{ margin-bottom:30px; }
+        #todo-form 	 			{ margin-bottom:50px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+<div class="col-md-13" style="padding-left: 0px;  padding-right: 0px;">
+    <img ng-src={{image.url}} class="img-responsive containerimg" id="bg" alt="">
+</div>
+
+<body ng-controller="mainController">
+
+    <div class="jumbotron text-center">
+        <h1>{{ currentCity.text }}</h1>
+    </div>
+    <!-- Location Selector -->
+    <form>
+        <div class="well carousel-search hidden-phone vert-offset-top-37 portfolio_description" >
+            <div class="btn-group centered">
+                <select  ng-init="regionModel = regions[0]"
+                          ng-model="regionModel"
+                          ng-change="changedRegion(regionModel)"
+                          data-ng-options="region.name for region in regions">
+                </select>
+            </div>
+
+            <div class="btn-group centered">
+                <select  ng-init="cityModel = cities[0]"
+                          ng-model="cityModel"
+                          ng-change="changedValue(cityModel)"
+                          data-ng-options="city.name for city in cities">
+            </select>
+            </div>
+
+            <div class="btn-group centered">
+                <select  ng-init="typeModel = types[0]"
+                          ng-model="typeModel"
+                          data-ng-options="type.name for type in types">
+                </select>
+            </div>
+
+            <!--<div class="btn-group centered">-->
+            <!--<a class="btn dropdown-toggle btn-select2" data-toggle="dropdown" href="#">Toronto <span class="caret"></span></a>-->
+            <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#">Waterloo</a></li>-->
+            <!--<li><a href="#">New York City</a></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+
+        </div>
+    </form>
+    <!--Search Button-->
+    <button type="submit" id="scroll"  class="btn btn-primary btn-block btn-lg button_absolute vert-offset-top-40" ng-click="findThings()">Find things to do!</button>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Rank</th>
+            <th>Ratings</th>
+            <th>Total Reviews</th>
+        </tr>
+        <tr ng-repeat="thing in things">
+            <td>{{thing.title}}</td>
+            <td>{{thing.rank}}</td>
+            <td>{{thing.rating}}</td>
+            <td>{{thing.total_reviews}}</td>
+        </tr>
+    </table>
+
+    <!--<ul id="features" class="clearfix">-->
+        <!--&lt;!&ndash;<li class="feature">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="pictogram cloud">&#59153;</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;<h4>Full Support for Cloud Data Storage with daily remote backups.</h4>&ndash;&gt;-->
+        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+        <!--<li ng-repeat=" opt in opts" ng-bind-html-unsafe="opt.text"  class="feature">-->
+            <!--<h4>{{ opt.title }}</h4>-->
+        <!--</li>-->
+    <!--</ul>-->
+
+    <!--source-->
+    <div class="text-center text-muted">
+        <p>View <a href="">source</a>.</p>
+    </div>
+
+
+</body>
+
+
+
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+<script src="controller.js"></script>
+<script src="core.js"></script>
+</html>

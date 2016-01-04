@@ -1,0 +1,64 @@
+body {
+  /*padding-left: 50px;*/
+  /*padding-right: 50px;*/
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.fillwidth {
+  width: 100%;
+  height: auto;
+}
+.fillheight {
+  height: 100%;
+  width: auto;
+}
+
+
+.portfolio_description {
+  position:absolute;
+  width:100%;
+  top:0;
+  background-color:rgba(255, 255, 255, 0);
+}
+
+
+.button_absolute {
+  position:absolute;
+  width:100%;
+  top:0;
+}
+
+.vert-offset-top-37{
+  margin-top:37em;
+}
+.vert-offset-top-40{
+  margin-top:34em;
+}
+
+.centered {
+  padding-right: 150px;
+  padding-left: 150px;
+}
+
+
+/* resize images */
+.containerimg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+table {
+  border: 1px solid #666;
+  width: 100%;
+}
+th {
+  background: #f8f8f8;
+  font-weight: bold;
+  padding: 2px;
+}
+
