@@ -21,7 +21,7 @@ function mainController($scope, $http) {
         else if(item.name == "England")
         {
             $scope.cities=[{name:"London"},{name:"Liverpool"}];
-        }
+        }  
 
     }
 
