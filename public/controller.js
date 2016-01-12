@@ -6,7 +6,7 @@ function mainController($scope, $http) {
 
     $scope.cities=[{name:"Toronto"},{name:"Waterloo"},{name:"Mississauga"}];
     $scope.regions=[{name:"Ontario"},{name:"New York"}, {name:"England"}];
-    $scope.types=[{name:"Most Popular"},{name:"Random"}];
+    $scope.types=[{name:"Most Popular"}];
     $scope.currentCity = {text:"Toronto"};
 
     $scope.changedRegion=function(item) {

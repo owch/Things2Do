@@ -4,6 +4,11 @@
 <html ng-app="T2D">
 <head>
     <!-- META -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="keywords" content="google getting started gallery, image gallery, image grid, template, masonry" />
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
@@ -74,30 +79,22 @@
     <!--Search Button-->
     <button type="submit" id="scroll"  class="btn btn-primary btn-block btn-lg button_absolute vert-offset-top-40" ng-click="findThings()">Find things to do!</button>
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Rank</th>
-            <th>Ratings</th>
-            <th>Total Reviews</th>
-        </tr>
-        <tr ng-repeat="thing in things">
-            <td>{{thing.title}}</td>
-            <td>{{thing.rank}}</td>
-            <td>{{thing.rating}}</td>
-            <td>{{thing.total_reviews}}</td>
-        </tr>
-    </table>
 
-    <!--<ul id="features" class="clearfix">-->
-        <!--&lt;!&ndash;<li class="feature">&ndash;&gt;-->
-            <!--&lt;!&ndash;<span class="pictogram cloud">&#59153;</span>&ndash;&gt;-->
-            <!--&lt;!&ndash;<h4>Full Support for Cloud Data Storage with daily remote backups.</h4>&ndash;&gt;-->
-        <!--&lt;!&ndash;</li>&ndash;&gt;-->
-        <!--<li ng-repeat=" opt in opts" ng-bind-html-unsafe="opt.text"  class="feature">-->
-            <!--<h4>{{ opt.title }}</h4>-->
-        <!--</li>-->
-    <!--</ul>-->
+    <div class="container">
+        <div id="grid-gallery" class="grid-gallery">
+            <section class="grid-wrap">
+                <ul class="grid">
+                    <li class="grid-sizer"></li><!-- for Masonry column width -->
+                    <li ng-repeat="thing in things">
+                        <figure>
+                            <img ng-src={{thing.image_url}}>
+                            <figcaption><h3>{{thing.title}}</h3><p>{{thing.review}}</p></figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </section><!-- // grid-wrap -->
+        </div><!-- // grid-gallery -->
+    </div>
 
     <!--source-->
     <div class="text-center text-muted">
@@ -112,4 +109,7 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 <script src="controller.js"></script>
 <script src="core.js"></script>
+<script src="javascripts/modernizr.custom.js"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/demo.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
 </html>

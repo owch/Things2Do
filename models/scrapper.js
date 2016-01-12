@@ -1,6 +1,7 @@
 /**
  * Created by owenchen on 15-12-31.
  */
+
 var exports = module.exports = {};
 var request = require('request');
 var fs = require('fs');
@@ -59,11 +60,46 @@ exports.getPlaces = function(city, callback) {
                 return console.log(err);
             }
             var $ = cheerio.load(file);
-            var title, rating, rank, total_reviews, image_url;
+            var title, rating, rank, total_reviews, lazy_url, img_url, review;
 
-            var result = [];
-            var json = [{title : "", rating: "", rank: "", total_reviews: "", image_url: ""}];
+            var json = [{title : "", rating: "", rank: "", total_reviews: "", image_url: "", review: ""}];
 
+            var lazyimg = [{imgurl: "", lazyloadurl: ""}];
+            var dict = {};
+
+            //Get all the image links and lazy load links
+            $('script').each(function(i, elem){
+                var data = $(this);
+                var substring = "lazyImgs";
+
+                if(data.text().indexOf(substring) > -1)
+                {
+                    var re = /\"data(.*)scroll\"/g;
+                    var arr;
+
+                    var count = 0;
+                    while ((arr = re.exec(data.text())) !== null) {
+                        lazyimg.push({});
+                        lazyimg[count].imgurl = arr[0].substring(8, arr[0].length - 10);
+                        count++;
+                    }
+
+                    re = /\"id(.*)priority\"/g;
+                    var arr2;
+
+                    count = 0;
+                    while ((arr2 = re.exec(data.text())) !== null) {
+                        lazyimg[count].lazyloadurl = arr2[0].substring(6, arr2[0].length - 12);
+                        count++;
+                    }
+
+
+                    for( i = 0; i < lazyimg.length; i++)
+                    {
+                        dict[lazyimg[i].lazyloadurl] = lazyimg[i].imgurl;
+                    }
+                }
+            });
 
             $('.element_wrap').each(function(i, elem){
                 var data = $(this);
@@ -110,16 +146,29 @@ exports.getPlaces = function(city, callback) {
                     total_reviews = split[0].slice(1);
                 }
 
-                //get the image url
-                //image_url = data.children().first().children().first().children().first().children().first().attr('src');
+                //get the lazy id
+                lazy_url = data.children().first().children().first().children().first().children().first().attr('id');
+                img_url = dict[lazy_url];
+                if(img_url == undefined)
+                {
+                    img_url = data.children().first().children().first().children().first().children().first().children().first().children().first().children().first().attr('src');
+                }
 
+                review = data.children().first().children().eq(1).children().eq(4).children().first().children().first().children().first().text();
+                if(review == undefined)
+                {
+                    review = "";
+                }
 
+                console.log(img_url);
                 // Once we have our data, we'll store it to the our json object.
                 json.push({});
                 json[i].title = title;
                 json[i].rank = rank;
                 json[i].rating = rating;
                 json[i].total_reviews = total_reviews;
+                json[i].image_url = img_url;
+                json[i].review = review;
             });
 
 
@@ -190,7 +239,7 @@ exports.getPlaces = function(city, callback) {
                         }
 
                         //get the image url
-                        //image_url = data.children().first().children().first().children().first().children().first().attr('src');
+                        image_url = data.children().first().children().first().children().first().children().first().attr('src');
 
 
                         // Once we have our data, we'll store it to the our json object.
@@ -201,13 +250,6 @@ exports.getPlaces = function(city, callback) {
                         json[i].total_reviews = total_reviews;
                     });
 
-
-                    ////write to output.json
-                    //fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
-                    //
-                    //    console.log('File successfully written! - Check your project directory for the output.json file');
-                    //
-                    //})
 
                     callback(json);
                 });
