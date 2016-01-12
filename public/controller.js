@@ -5,7 +5,7 @@ function mainController($scope, $http) {
 
 
     $scope.cities=[{name:"Toronto"},{name:"Waterloo"},{name:"Mississauga"}];
-    $scope.regions=[{name:"Ontario"},{name:"New York"}, {name:"England"}];
+    $scope.regions=[{name:"Ontario"},{name:"New York"}, {name:"England"}, {name:"California"}];
     $scope.types=[{name:"Most Popular"}];
     $scope.currentCity = {text:"Toronto"};
 
@@ -21,7 +21,11 @@ function mainController($scope, $http) {
         else if(item.name == "England")
         {
             $scope.cities=[{name:"London"},{name:"Liverpool"}];
-        }  
+        }
+        else if(item.name == "California")
+        {
+            $scope.cities=[{name:"Los Angeles"},{name:"San Francisco"}];
+        }
 
     }
 
