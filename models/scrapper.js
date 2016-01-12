@@ -115,6 +115,7 @@ exports.getPlaces = function(city, callback) {
 
                 //get the title
                 title = data.children().first().children().eq(1).children().first().children().first().text();
+                title = title.replace(/ *\([^)]*\) */g, "");
                 if(title == undefined || title == "")
                 {
                     title = 'n/a';
