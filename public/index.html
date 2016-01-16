@@ -42,7 +42,7 @@
     </div>
     <!-- Location Selector -->
     <form>
-        <div class="well carousel-search hidden-phone vert-offset-top-37 portfolio_description" >
+        <div class="well carousel-search hidden-phone vert-offset-top-37 portfolio_description col-md-5" >
             <div class="btn-group centered">
                 <select  ng-init="regionModel = regions[0]"
                           ng-model="regionModel"
@@ -51,7 +51,7 @@
                 </select>
             </div>
 
-            <div class="btn-group centered">
+            <div class="btn-group centered col-md-5">
                 <select  ng-init="cityModel = cities[0]"
                           ng-model="cityModel"
                           ng-change="changedValue(cityModel)"
@@ -59,7 +59,7 @@
             </select>
             </div>
 
-            <div class="btn-group centered">
+            <div class="btn-group centered col-md-5">
                 <select  ng-init="typeModel = types[0]"
                           ng-model="typeModel"
                           data-ng-options="type.name for type in types">
