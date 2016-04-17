@@ -54,6 +54,11 @@ exports.getPlaces = function(city, callback) {
         var base_url = 'https://www.tripadvisor.ca/Attractions-g60713-Activities-';
         var location_url = 'San_Francisco_California.html';
     }
+    else if(city == "San Mateo")
+    {
+        var base_url = 'https://www.tripadvisor.ca/Attractions-g33031-Activities-';
+        var location_url = 'San_Mateo_California.html';
+    }
     else
     {
         var base_url = 'http://www.tripadvisor.ca/Attractions-g155019-Activities-';

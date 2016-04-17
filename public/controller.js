@@ -24,7 +24,7 @@ function mainController($scope, $http) {
         }
         else if(item.name == "California")
         {
-            $scope.cities=[{name:"Los Angeles"},{name:"San Francisco"}];
+            $scope.cities=[{name:"Los Angeles"},{name:"San Francisco"}, {name:"San Mateo"}];
         }
 
     }
